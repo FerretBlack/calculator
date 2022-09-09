@@ -15,19 +15,20 @@ import ButtonGroup from "./components/ButtonGroup.vue";
 import History from "./components/History.vue";
 
 const expression = ref(0);
-const operations = ref([])
+const operations = ref([]);
+const operators = ref(["+", "-", "/", "*"])
 
 const getAnswer = () => {
-  if (typeof(expression.value) !== 'string') {
-    return 
+  if (typeof expression.value !== "string") {
+    return;
   }
 
-  const operation = expression.value
+  const operation = expression.value;
   const exp = eval(expression.value.replace(/ /g, ""));
 
   if (expression.value != exp) {
-    expression.value = exp
-    operations.value.push(`${operation} = ${exp}`)
+    expression.value = exp;
+    operations.value.push(`${operation} = ${exp}`);
   }
 };
 
@@ -39,9 +40,12 @@ const setValue = (event) => {
 
   if (event === "delete") {
     if (expression.value) {
+      expression.value = expression.value.trim();
       expression.value =
         expression.value.length > 1
-          ? expression.value.substr(0, expression.value.length - 1)
+          ? expression.value
+              .substr(0, expression.value.length - 1)
+              .replace(/ /g, "")
           : 0;
     } else {
       expression.value = 0;
@@ -50,7 +54,10 @@ const setValue = (event) => {
     return;
   }
 
-  if (event === "+" || event === "-" || event === "/" || event === "*") {
+  if (operators.value.includes(event)) {
+    if (operators.value.includes(expression.value.toString().replace(/ /g, "").slice(-1))) {
+      return;
+    }
     expression.value = expression.value += ` ${event} `;
     return;
   }
