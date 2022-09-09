@@ -1,0 +1,9 @@
+@import "./base.scss";
+
+#app {
+  padding: 5px 200px;
+
+  @media screen and (max-width: 1000px) {
+      padding: 5px;
+  }
+}
