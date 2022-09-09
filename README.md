@@ -1,6 +1,6 @@
 # calc-vue-3
 
-This template should help get you started developing with Vue 3 in Vite.
+Приложение "Калькулятор" реализованное на Vue 3
 
 ## Recommended IDE Setup
 
