@@ -18,6 +18,10 @@ const expression = ref(0);
 const operations = ref([])
 
 const getAnswer = () => {
+  if (typeof(expression.value) !== 'string') {
+    return 
+  }
+
   const operation = expression.value
   const exp = eval(expression.value.replace(/ /g, ""));
 
