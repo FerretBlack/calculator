@@ -50,8 +50,8 @@ const setValue = (event) => {
     return;
   }
 
-  if (event === "plus") {
-    expression.value = expression.value += " + ";
+  if (event === "+" || event === "-" || event === "/" || event === "*") {
+    expression.value = expression.value += ` ${event} `;
     return;
   }
 

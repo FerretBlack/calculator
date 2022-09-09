@@ -54,6 +54,7 @@ const buttons = reactive([
   {
     label: "÷",
     type: "operator",
+    value: "/",
   },
   {
     label: 4,
@@ -73,6 +74,7 @@ const buttons = reactive([
   {
     label: "×",
     type: "operator",
+    value: "*",
   },
   {
     label: 7,
@@ -92,6 +94,7 @@ const buttons = reactive([
   {
     label: "−",
     type: "operator",
+    value: "-",
   },
   {
     label: ",",
@@ -105,7 +108,7 @@ const buttons = reactive([
   {
     label: "+",
     type: "operator",
-    value: "plus",
+    value: "+",
   },
   {
     label: "=",
@@ -127,6 +130,7 @@ const buttons = reactive([
   padding: 16px 20px;
   font-size: 32px;
   color: black;
+  touch-action: manipulation;
 
   &.-operator {
     background: #42b883;
