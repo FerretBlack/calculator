@@ -21,6 +21,7 @@ const buttons = reactive([
   {
     label: "%",
     type: "operator",
+    value: "%",
   },
   {
     label: "CE",

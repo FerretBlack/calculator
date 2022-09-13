@@ -1,22 +1,28 @@
 <template>
-  <div :class="$style.wrapper">
-    <InputWrapper :expression="expression" :class="$style.input" />
-    <div :class="$style.container">
-      <ButtonGroup @set-value="setValue" />
-      <History :operations="operations" :class="$style.history" />
+  <div>
+    <div :class="$style.wrapper">
+      <Result :expression="expression" :class="$style.input" />
+      <div :class="$style.container">
+        <ButtonGroup @set-value="setValue" />
+        <History :operations="operations" :class="$style.history" />
+        <span class="mdi mdi-home"></span>
+      </div>
+    </div>
+    <div :class="[$style.wrapper, $style['-history']]">
+      <History :operations="operations" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import InputWrapper from "./components/InputWrapper.vue";
+import Result from "./components/Result.vue";
 import ButtonGroup from "./components/ButtonGroup.vue";
 import History from "./components/History.vue";
 
 const expression = ref(0);
 const operations = ref([]);
-const operators = ref(["+", "-", "/", "*"])
+const operators = ref(["+", "-", "/", "*"]);
 
 const getAnswer = () => {
   if (typeof expression.value !== "string") {
@@ -55,7 +61,11 @@ const setValue = (event) => {
   }
 
   if (operators.value.includes(event)) {
-    if (operators.value.includes(expression.value.toString().replace(/ /g, "").slice(-1))) {
+    if (
+      operators.value.includes(
+        expression.value.toString().replace(/ /g, "").slice(-1)
+      )
+    ) {
       return;
     }
     expression.value = expression.value += ` ${event} `;
@@ -81,6 +91,14 @@ const setValue = (event) => {
   padding: 40px;
   border-radius: 10px;
 
+  &.-history {
+    margin-top: 20px;
+
+    @media screen and (min-width: 1136px) {
+      display: none;
+    }
+  }
+
   @media screen and (max-width: 500px) {
     padding: 20px;
   }
@@ -95,6 +113,12 @@ const setValue = (event) => {
 
   @media screen and (max-width: 1135px) {
     display: none;
+  }
+}
+
+.history-mobile {
+  @media screen and (max-width: 1135px) {
+    margin-top: 20px;
   }
 }
 
